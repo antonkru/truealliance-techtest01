@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+@{
+    Html.RenderAction("RandomProductsPartial", "Products", null);
+}
+
+@Html.ActionLink("All Products", null, "Products", null,null)
+
