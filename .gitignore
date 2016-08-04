@@ -234,3 +234,7 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+*/TechTest01.mdf
+*/TechTest01_log.ldf
+*/TechTest01.log
