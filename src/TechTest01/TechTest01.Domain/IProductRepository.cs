@@ -9,5 +9,7 @@ namespace TechTest01.Domain
 {
     public interface IProductRepository : IRepository<Product>
     {
+
+        Product Get(string slug);
     }
 }

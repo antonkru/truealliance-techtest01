@@ -43,7 +43,7 @@ namespace TechTest01.Services.Catalog
 
             var pos1 = rnd.Next(0, totalCount-1);
             prods.Add(prodQuery.Skip(pos1).First());
-            int pos2 = rnd.Next(1, totalCount);
+            int pos2 = rnd.Next(0, totalCount-1);
             
             // dont return the same product
             if (pos2 == pos1)

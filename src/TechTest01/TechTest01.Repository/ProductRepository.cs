@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using TechTest01.Domain;
@@ -28,6 +29,11 @@ namespace TechTest01.Repository
         public IQueryable<Product> GetAll()
         {
             return ProductDbSet.Select(p=>p);
+        }
+
+        public IQueryable<Product> Query(Expression<Func<Product, bool>> query)
+        {
+            return ProductDbSet.Where(query);
         }
 
         public Product Get(int id)
@@ -74,6 +80,6 @@ namespace TechTest01.Repository
             return _context.SaveChanges();
         }
 
-       
+        
     }
 }
