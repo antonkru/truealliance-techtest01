@@ -51,7 +51,7 @@ namespace WebApplication1.Tests.Controllers
         [TestMethod]
         public void Index()
         {
-            // Arrange
+            // Arrange vvvvv
             ProductsController controller = new ProductsController(_productService, _logManager);
 
             // Act
