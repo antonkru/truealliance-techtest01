@@ -39,14 +39,13 @@ namespace WebApplication1.Tests.Controllers
             var mockDataRepo = new Mock<IProductRepository>();
             mockDataRepo.Setup(d => d.GetAll()).Returns(mockProducts);
             mockDataRepo.Setup(d => d.Get(It.IsAny<int>())).Returns(mockProducts.Single(p=>p.Id == 3));
-            mockDataRepo.Setup(d => d.Get(It.IsAny<string>())).Returns(mockProducts.Single(p => p.Id == 3));
+            mockDataRepo.Setup(d => d.Get(It.IsAny<string>())).Returns((string slug) => mockProducts.Single(p => p.Slug == slug));
             _productService =  new ProductService(mockDataRepo.Object);
 
 
             var mockLogManager = new Mock<ILogManager>();
             _logManager = mockLogManager.Object;
-
-
+            
         }
 
         [TestMethod]
@@ -84,10 +83,13 @@ namespace WebApplication1.Tests.Controllers
             ProductsController controller = new ProductsController(_productService, _logManager);
 
             // Act
-            ViewResult result = controller.Details("123") as ViewResult;
+            ViewResult result = controller.Details("abc-jacket") as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
+
+            var model = (ProductVm)result.Model;
+            Assert.AreEqual(2, model.Id);
         }
     }
 }
